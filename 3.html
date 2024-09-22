@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香水定制表单</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-size: 16px;
+            color: #555;
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* 模态框样式 */
+        .modal {
+            display: none; /* 默认隐藏 */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* 背景变暗 */
+        }
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .modal-content h2 {
+            margin: 0 0 15px;
+            font-size: 20px;
+            color: #333;
+        }
+        .close-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        /* 联系方式样式 */
+        .contact {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>定制您的专属香水</h1>
+    <form id="perfumeForm">
+        <label for="name">您的名字</label>
+        <input type="text" id="name" name="name" placeholder="请输入您的名字" required>
+        
+        <label for="address">您的地址</label>
+        <input type="text" id="address" name="address" placeholder="请输入您的地址" required>
+        
+        <label for="phone">您的联系电话</label>
+        <input type="tel" id="phone" name="phone" placeholder="请输入您的电话号码" required>
+        
+        <label for="budget">预期价格</label>
+        <select id="budget" name="budget" required>
+            <option value="">请选择预期价格</option>
+            <option value="500以下">500以下</option>
+            <option value="500-1000">500-1000</option>
+            <option value="1000-2000">1000-2000</option>
+            <option value="2000以上">2000以上</option>
+        </select>
+        
+        <label for="preference">香水需求描述</label>
+        <textarea id="preference" name="preference" placeholder="请描述您对香水的偏好、场合、气味等" required></textarea>
+        
+        <button type="submit" class="submit-btn">提交</button>
+    </form>
+</div>
+
+<!-- 模态框 -->
+<div id="successModal" class="modal">
+    <div class="modal-content">
+        <h2>提交成功！</h2>
+        <p>我们将为您打造独属于您的香水！</p>
+        <button class="close-btn">关闭</button>
+    </div>
+</div>
+
+<!-- 联系方式 -->
+<div class="contact">
+    <p>如有问题，请联系：<br>邮箱：lingyuntiaoxiang@example.com</p>
+</div>
+
+<script>
+    // 获取表单和模态框元素
+    const form = document.getElementById("perfumeForm");
+    const modal = document.getElementById("successModal");
+    const closeBtn = document.querySelector(".close-btn");
+
+    // 提交表单事件
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        modal.style.display = "block"; // 显示模态框
+        form.reset(); // 清空表单
+    });
+
+    // 关闭模态框
+    closeBtn.addEventListener("click", function() {
+        modal.style.display = "none";
+    });
+
+    // 点击模态框外部区域关闭模态框
+    window.addEventListener("click", function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+</script>
+
+</body>
+</html>
